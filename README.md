@@ -33,9 +33,11 @@ Tintin will read a _config.tin_ file script from the directory where the contain
 
 The latter can be changed by substituting `$(pwd)` with the absolute path of your choice.
 
-### Important note
+### Important note on security
 
 Add `#CONFIG {CHILD LOCK} ON` to _config.tin_ in order to prevent users from __getting access to the insides of the container__.
+
+Although this is not a big concern, given that it still is _just_ a container, it definitely is conceptually wrong when serving mulptiple users, as some of them could for example edit, rename or delete _config.tin_ (and not much else). This is an advantage of using a cointainer, instead of setting up _ttyd_ and _tt++_ separately on the host machine.
 
 ### Port forwarding
 
@@ -43,7 +45,7 @@ Add `#CONFIG {CHILD LOCK} ON` to _config.tin_ in order to prevent users from __g
 
 ### Running it in the background
 
-Launch the container in detached mode: 
+Launch the container in detached mode:
 
 ```
 docker run -d -p 3000:3000 -v $(pwd):/data rpolve/webtin
