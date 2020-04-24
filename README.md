@@ -12,34 +12,40 @@
 
 Install Docker:
 
-(Arch) `sudo pacman -S docker`
-(Ubuntu) `sudo apt install docker.io`
+* (Debian/Ubuntu): `sudo apt install docker.io`
+* (Arch/Manjaro): `sudo pacman -S docker`
 
-Add yourself to the docker group (optional, otherwise you'll need `sudo` a bunch of times):
+Add yourself to the docker group (this is optional, but avoids the need for calling `sudo` a bunch of times):
 
-```bash
+```
 sudo usermod -aG docker ${USER}
 ```
 
 Logout to take effect. Then:
 
-```bash
+```
 docker run -it -p 3000:3000 -v $(pwd):/data rpolve/webtin
 ```
 
 Point your web browser to _localhost:3000_ and it's done.
 
-Tintin will read a _config.tin_ file script from the current directory.
+Tintin will read a _config.tin_ file script from the directory where the container was launched.
+
+The latter can be changed by substituting `$(pwd)` with the absolute path of your choice.
+
+### Important note
+
+Add `#CONFIG {CHILD LOCK} ON` to _config.tin_ in order to prevent users from __getting access to the insides of the container__.
 
 ### Port forwarding
 
-`-p <x>:<y>` means forward port <x> on the host to match port <y> in the container. By construction, webtin listens to port 3000 but you can match it with any port you like on your host by changing <x>, like `-p 80:3000` for default http port.
+`-p <x>:<y>` means matching port <x> on the host to port <y> within the container. By construction, Webtin listens to port 3000, but you can change <x> to whichever port you like, e.g. `-p 80:3000` for default http port.
 
 ### Running it in the background
 
-Launch the container in detached mode:
+Launch the container in detached mode: 
 
-```bash
+```
 docker run -d -p 3000:3000 -v $(pwd):/data rpolve/webtin
 ```
 
