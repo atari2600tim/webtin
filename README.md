@@ -41,7 +41,7 @@ Although this is not a big concern, given that it still is _just_ a container, i
 
 ### Port forwarding
 
-`-p <x>:<y>` means matching port <x> on the host to port <y> within the container. By construction, Webtin listens to port 3000, but you can change <x> to whichever port you like, e.g. `-p 80:3000` for default http port.
+`-p <x>:<y>` means matching port \<x> on the host to port \<y> within the container. By construction, Webtin listens to port 3000, but you can change <x> to whichever port you like, e.g. `-p 80:3000` for default http port.
 
 ### Running it in the background
 
