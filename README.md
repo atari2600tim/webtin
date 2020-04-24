@@ -1,10 +1,12 @@
 # Webtin
 
+## Depends
+
+[TinTin++](https://tintin.mudhalla.net)
+
+[ttyd](https://github.com/tsl0922/ttyd)
+
 ## Usage
-
-### About Docker
-
-[Docker intro](https://docs.docker.com/get-started/overview/)
 
 ### Quickstart
 
@@ -43,7 +45,10 @@ docker run -d -p 3000:3000 -v $(pwd):/data rpolve/webtin
 
 See `docker run --help` and `docker stop --help`.
 
-## Depends
+## About Docker
 
-[TinTin++](https://tintin.mudhalla.net)
-[ttyd](https://github.com/tsl0922/ttyd)
+[Docker intro](https://docs.docker.com/get-started/overview/)
+
+## Acknowledgements
+
+Thanks to Scandum and Eldakar for the much appreciated insights.
