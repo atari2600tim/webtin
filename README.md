@@ -43,7 +43,7 @@ If for some reason you do not want a child locked session, you can still fine-tu
 
 ### Port forwarding
 
-`-p <x>:<y>` means matching port \<x> on the host to port \<y> within the container. By construction, Webtin listens to port 3000, but you can change <x> to whichever port you like, e.g. `-p 80:3000` for default http port.
+`-p <x>:<y>` means matching port \<x> on the host to port \<y> within the container. By construction, Webtin listens to port 3000, but you can change \<x> to whichever port you like, e.g. `-p 80:3000` for default http port.
 
 ### Running in the background
 
@@ -58,6 +58,10 @@ See `docker run --help` and `docker stop --help`.
 ### Resource constraints
 
 Docker provides runtime options for limiting CPU and memory usage. [See here](https://docs.docker.com/config/containers/resource_constraints/).
+
+### Raspberry Pi
+
+An Arm compatible image is available by pulling `rpolve/webtin:rpi`.
 
 ## About Docker
 
