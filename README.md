@@ -35,9 +35,11 @@ The latter can be changed by substituting `$(pwd)` with the absolute path of you
 
 ### Important note on security
 
-Add `#CONFIG {CHILD LOCK} ON` to _config.tin_ in order to prevent users from __getting access to the insides of the container__.
+Add `#CONFIG {CHILD LOCK} ON` to _config.tin_ in order to prevent users from __getting command line access to the insides of the container__.
 
-Although this is not a big concern, given that it still is _just_ a container, it definitely is conceptually wrong when serving mulptiple users, as some of them could for example edit, rename or delete _config.tin_ (and not much else). This is an advantage of using a cointainer, instead of setting up _ttyd_ and _tt++_ separately on the host machine.
+Although this is not much of a concern, given that it still is _just_ a container, it definitely is conceptually wrong when serving mulptiple users, as some of them could for example edit, rename or delete _config.tin_ (and not much else). This is an advantage of using a cointainer, instead of setting up _ttyd_ and _tt++_ separately on the host machine.
+
+If for some reason you do not want a child locked session, you can still fine-tune permissions in the folder from which you launched the container (or any folder that will be mounted as a volume with the `-v` flag), as they will be inherited by the user inside the container.
 
 ### Port forwarding
 

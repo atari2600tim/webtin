@@ -30,5 +30,8 @@ RUN apt remove -y \
 COPY webtin /usr/local/bin/
 RUN chown root:root /usr/local/bin/webtin
 RUN chmod 755 /usr/local/bin/webtin
+RUN useradd -ms /bin/bash term
+USER term
+WORKDIR /home/term
 EXPOSE 3000
 CMD ["webtin"]
