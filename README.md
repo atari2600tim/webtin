@@ -27,11 +27,28 @@ Logout to take effect. Then:
 docker run -it -p 3000:3000 -v $(pwd):/data rpolve/webtin
 ```
 
-Point your web browser to _localhost:3000_ and it's done.
+Now point your web browser to _localhost:3000_ and it's done.
 
 Tintin will read a _config.tin_ file script from the directory where the container was launched.
 
 The latter can be changed by substituting `$(pwd)` with the absolute path of your choice.
+
+### Port forwarding
+
+`-p <x>:<y>` means matching port \<x> on the host to port \<y> within the container. By construction, Webtin listens to port 3000, but you can change \<x> to whichever port you like, e.g. `-p 80:3000` for default http port.
+
+### Networking from the cointainer perspective
+
+When trying to connect to your Docker host from within the container (e.g. as in the tt session), you have to look up its IP on the docker network. You can easily do this by running something like `ip a` to find out the IP address of your `docker0` adapter. In this case __172.17.0.1__:
+
+```
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500
+    link/ether 02:42:e8:a9:95:58 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+```
+
+An alternative would be to use `--network host` in your `docker run` command. See [here](https://docs.docker.com/network/host/) for more info.
 
 ### Important note on security
 
@@ -40,10 +57,6 @@ Add `#CONFIG {CHILD LOCK} ON` to _config.tin_ in order to prevent users from __g
 Although this is not much of a concern, given that it still is _just_ a container, it definitely is conceptually wrong when serving mulptiple users, as some of them could for example edit, rename or delete _config.tin_ (and not much else). This is an advantage of using a cointainer, instead of setting up _ttyd_ and _tt++_ separately on the host machine.
 
 If for some reason you do not want a child locked session, you can still fine-tune permissions in the folder from which you launched the container (or any folder that will be mounted as a volume with the `-v` flag), as they will be inherited by the user inside the container.
-
-### Port forwarding
-
-`-p <x>:<y>` means matching port \<x> on the host to port \<y> within the container. By construction, Webtin listens to port 3000, but you can change \<x> to whichever port you like, e.g. `-p 80:3000` for default http port.
 
 ### Running in the background
 
