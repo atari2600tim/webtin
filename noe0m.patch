@@ -1,36 +1,16 @@
-diff --git a/src/misc.c b/src/misc.c
-index cb3ad97..19f3b7f 100644
---- a/src/misc.c
-+++ b/src/misc.c
-@@ -180,11 +180,11 @@ DO_COMMAND(do_echo)
+diff -bru5 a/src/tintin.h b/src/tintin.h
+--- a/src/tintin.h	2020-05-10 12:29:49.670306837 +0200
++++ b/src/tintin.h	2020-05-10 12:28:03.470310200 +0200
+@@ -203,11 +203,11 @@
+ #define COLOR_COMMAND       "\e[38;5;044m" // "<aee>" // cyan
+ #define COLOR_RESET         "\e[0m"        // "<088>" // reset
+ #define COLOR_SEPARATOR     "\e[38;5;160m" // "<eaa>" // red
+ #define COLOR_STATEMENT     "\e[38;5;040m" // "<aea>" // green
+ #define COLOR_STRING        "\e[38;5;188m" // "<eee>" // white
+-#define COLOR_TEXT          "\e[0m"        // "<ddd>" // grey
++#define COLOR_TEXT          "\e[0;37;49m"  // Patched for Clessidra
+ #define COLOR_TINTIN        "\e[38;5;184m" // "<eea>" // yellow
  
- 	if (strip_vt102_strlen(ses, ses->more_output) != 0)
- 	{
--		output = str_dup_printf("\n\e[0m%s\e[0m", temp);
-+		output = str_dup_printf("\n\e[0m%s", temp);
- 	}
- 	else
- 	{
--		output = str_dup_printf("\e[0m%s\e[0m", temp);
-+		output = str_dup_printf("\e[0m%s", temp);
- 	}
- 
- 	add_line_buffer(ses, output, lnf);
-diff --git a/src/show.c b/src/show.c
-index 642f43e..cba6289 100644
---- a/src/show.c
-+++ b/src/show.c
-@@ -67,11 +67,11 @@ DO_COMMAND(do_showme)
- 
- 	if (strip_vt102_strlen(ses, ses->more_output) != 0)
- 	{
--		output = str_dup_printf("\n%s%s%s", COLOR_TEXT, arg1, COLOR_TEXT);
-+		output = str_dup_printf("\n%s%s", COLOR_TEXT, arg1);
- 	}
- 	else
- 	{
--		output = str_dup_printf("%s%s%s", COLOR_TEXT, arg1, COLOR_TEXT);
-+		output = str_dup_printf("%s%s", COLOR_TEXT, arg1);
- 	}
- 
- 	add_line_buffer(ses, output, lnf);
+ #define TIMER_UPDATE_INPUT               0
+ #define TIMER_UPDATE_SESSIONS            1
+ #define TIMER_UPDATE_DELAYS              2
