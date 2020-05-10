@@ -68,6 +68,10 @@ docker run -d -p 3000:3000 -v $(pwd):/data rpolve/webtin
 
 See `docker run --help` and `docker stop --help`.
 
+### Restarting the container at boot
+
+[Here](https://docs.docker.com/config/containers/start-containers-automatically/) be info.
+
 ### Noe0m patch
 
 A patch is made available that strips tintin's `#echo` and `#showme` functions of the `\e[0m` ANSI color code. This caused slight problems on some MUDs with less than usual colouring scheme. The patched container is available for pulling from Docker Hub under the tag `rpolve/webtin:noe0m`.
