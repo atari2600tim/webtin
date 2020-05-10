@@ -68,6 +68,10 @@ docker run -d -p 3000:3000 -v $(pwd):/data rpolve/webtin
 
 See `docker run --help` and `docker stop --help`.
 
+### Noe0m patch
+
+A patch is made available that strips tintin's `#echo` and `#showme` functions of the `\e[0m` ANSI color code. This caused slight problems on some MUDs with less than usual colouring scheme. The patched container is available for pulling from Docker Hub under the name+tag `rpolve/webtin:noe0m`.
+
 ### Resource constraints
 
 Docker provides runtime options for limiting CPU and memory usage. [See here](https://docs.docker.com/config/containers/resource_constraints/).
@@ -82,4 +86,4 @@ An Arm compatible image is available by pulling `rpolve/webtin:rpi`.
 
 ## Acknowledgements
 
-Thanks to Scandum and Eldakar for the much appreciated insights.
+Thanks to tintin developer Scandum, Eldakar and Tyrir from tintin discord server for the much appreciated insights. Also to Tyrir goes credit for the _noe0m.patch_.
