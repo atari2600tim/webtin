@@ -90,4 +90,4 @@ An Arm compatible image is available by pulling `rpolve/webtin:rpi`.
 
 ## Acknowledgements
 
-Many thanks to Scandum (tt++ dev), Eldakar and Tyrir from tintin discord server for the much appreciated insights.
+Many thanks to Scandum, Eldakar and Tyrir from tintin discord server for the much appreciated insights.
