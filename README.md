@@ -70,7 +70,7 @@ See `docker run --help` and `docker stop --help`.
 
 ### Noe0m patch
 
-A patch is made available that strips tintin's `#echo` and `#showme` functions of the `\e[0m` ANSI color code. This caused slight problems on some MUDs with less than usual colouring scheme. The patched container is available for pulling from Docker Hub under the name+tag `rpolve/webtin:noe0m`.
+A patch is made available that strips tintin's `#echo` and `#showme` functions of the `\e[0m` ANSI color code. This caused slight problems on some MUDs with less than usual colouring scheme. The patched container is available for pulling from Docker Hub under the tag `rpolve/webtin:noe0m`.
 
 ### Resource constraints
 
