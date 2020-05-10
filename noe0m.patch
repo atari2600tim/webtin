@@ -1,16 +1,67 @@
-diff -bru5 a/src/tintin.h b/src/tintin.h
---- a/src/tintin.h	2020-05-10 12:29:49.670306837 +0200
-+++ b/src/tintin.h	2020-05-10 12:28:03.470310200 +0200
-@@ -203,11 +203,11 @@
- #define COLOR_COMMAND       "\e[38;5;044m" // "<aee>" // cyan
- #define COLOR_RESET         "\e[0m"        // "<088>" // reset
- #define COLOR_SEPARATOR     "\e[38;5;160m" // "<eaa>" // red
- #define COLOR_STATEMENT     "\e[38;5;040m" // "<aea>" // green
- #define COLOR_STRING        "\e[38;5;188m" // "<eee>" // white
--#define COLOR_TEXT          "\e[0m"        // "<ddd>" // grey
-+#define COLOR_TEXT          "\e[0;37;49m"  // Patched for Clessidra
- #define COLOR_TINTIN        "\e[38;5;184m" // "<eea>" // yellow
- 
- #define TIMER_UPDATE_INPUT               0
- #define TIMER_UPDATE_SESSIONS            1
- #define TIMER_UPDATE_DELAYS              2
+diff -bru5 a/src/input.c b/src/input.c
+--- a/src/input.c	2020-05-10 13:30:25.063524661 +0200
++++ b/src/input.c	2020-05-10 13:42:20.606835224 +0200
+@@ -781,19 +781,19 @@
+ 		return;
+ 	}
+
+ 	if (HAS_BIT(ses->flags, SES_FLAG_ECHOCOMMAND))
+ 	{
+-		sprintf(buffer, "%s%s\e[0m", ses->cmd_color, line);
++		sprintf(buffer, "%s%s\e[0;37;49m", ses->cmd_color, line);  // Patched for Clessidra MUD.
+ 	}
+ 	else
+ 	{
+ 		if (strip_vt102_strlen(ses, output) == 0)
+ 		{
+ 			return;
+ 		}
+-		sprintf(buffer, "\e[0m");
++		sprintf(buffer, "\e[0;37;49m");  // Patched for Clessidra MUD.
+ 	}
+
+ 	if (ses->wrap == gtd->screen->cols)
+ 	{
+ 		gtd->level->scroll++;
+diff -bru5 a/src/misc.c b/src/misc.c
+--- a/src/misc.c	2020-05-10 13:30:25.066857995 +0200
++++ b/src/misc.c	2020-05-10 13:34:03.573517714 +0200
+@@ -178,15 +178,15 @@
+
+ 	substitute(ses, arg, temp, SUB_COL|SUB_ESC);
+
+ 	if (strip_vt102_strlen(ses, ses->more_output) != 0)
+ 	{
+-		output = str_dup_printf("\n\e[0m%s\e[0m", temp);
++		output = str_dup_printf("\n\e[0m%s", temp);
+ 	}
+ 	else
+ 	{
+-		output = str_dup_printf("\e[0m%s\e[0m", temp);
++		output = str_dup_printf("\e[0m%s", temp);
+ 	}
+
+ 	add_line_buffer(ses, output, lnf);
+
+ 	if (ses == gtd->ses)
+diff -bru5 a/src/show.c b/src/show.c
+--- a/src/show.c	2020-05-10 13:30:25.066857995 +0200
++++ b/src/show.c	2020-05-10 13:34:03.576851046 +0200
+@@ -65,15 +65,15 @@
+ 		return ses;
+ 	}
+
+ 	if (strip_vt102_strlen(ses, ses->more_output) != 0)
+ 	{
+-		output = str_dup_printf("\n%s%s%s", COLOR_TEXT, arg1, COLOR_TEXT);
++		output = str_dup_printf("\n%s%s", COLOR_TEXT, arg1);
+ 	}
+ 	else
+ 	{
+-		output = str_dup_printf("%s%s%s", COLOR_TEXT, arg1, COLOR_TEXT);
++		output = str_dup_printf("%s%s", COLOR_TEXT, arg1);
+ 	}
+
+ 	add_line_buffer(ses, output, lnf);
+
+ 	if (ses == gtd->ses)
