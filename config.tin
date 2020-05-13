@@ -1,1 +1,3 @@
 #nop
+#CONFIG {CHILD LOCK} ON
+#ssl {testef} {eternalfantasy.org} {4334}
